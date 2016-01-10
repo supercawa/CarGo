@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarGo.Model", "CarGo.Model\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarGo.Tools", "CarGo.Tools\CarGo.Tools.csproj", "{78F8E8FE-89DA-475B-BB63-0471D63827DF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{998EA169-9788-4B6E-A4B9-251D3914C2E5}"
+	ProjectSection(SolutionItems) = preProject
+		DB.bak = DB.bak
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
