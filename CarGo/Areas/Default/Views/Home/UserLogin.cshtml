@@ -1,0 +1,12 @@
+﻿@model CarGo.Model.User
+
+@if (Model != null)
+{
+    <li>@Model.Email</li>
+    <li>@Html.ActionLink("Выход", "Logout", "Login")</li>
+}
+else
+{
+    <li><span class="btn btn-link" id="LoginPopup">Вход</span></li>
+    <li>@Html.ActionLink("Регистрация", "Register", "User")</li>
+}
