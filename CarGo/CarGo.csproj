@@ -167,6 +167,7 @@
     <Compile Include="Areas\Default\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Default\Controllers\FeedController.cs" />
     <Compile Include="Areas\Default\Controllers\FileController.cs" />
+    <Compile Include="Areas\Default\Controllers\LocateController.cs" />
     <Compile Include="Areas\Default\Controllers\LoginController.cs" />
     <Compile Include="Areas\Default\Controllers\MailController.cs" />
     <Compile Include="Areas\Default\Controllers\SimpleFileController.cs" />
@@ -235,6 +236,13 @@
     <Content Include="Content\jquery-ui-1.10.1.custom.css" />
     <Content Include="Content\jquery-ui-1.10.1.custom.min.css" />
     <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\Locate\bgr.jpg" />
+    <Content Include="Content\Locate\jquery.locateme.css" />
+    <Content Include="Content\Locate\jquery.locateme.js" />
+    <Content Include="Content\Locate\jquery.locateme.min.css" />
+    <Content Include="Content\Locate\jquery.locateme.min.js" />
+    <Content Include="Content\Locate\jQuery.min.js" />
+    <Content Include="Content\Locate\UI.css" />
     <Content Include="Content\mime\application-msword.png" />
     <Content Include="Content\mime\application-pdf.png" />
     <Content Include="Content\mime\application-vnd-ms-excel.png" />
@@ -300,6 +308,7 @@
     <Content Include="Areas\Default\Views\SimpleFile\Index.cshtml" />
     <Content Include="Areas\Default\Views\File\Index.cshtml" />
     <Content Include="Areas\Default\Views\Mail\Subscription.html.cshtml" />
+    <Content Include="Areas\Default\Views\Locate\Search.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\default\customer-edit.js" />

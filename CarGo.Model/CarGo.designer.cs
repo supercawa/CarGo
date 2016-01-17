@@ -23,7 +23,7 @@ namespace CarGo.Model
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="CarGo")]
-	public partial class LessonProjectDbDataContext : System.Data.Linq.DataContext
+	public partial class CarGoDbDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -51,9 +51,9 @@ namespace CarGo.Model
     partial void InsertFreightType(FreightType instance);
     partial void UpdateFreightType(FreightType instance);
     partial void DeleteFreightType(FreightType instance);
-    partial void InsertGeoCitiy(GeoCitiy instance);
-    partial void UpdateGeoCitiy(GeoCitiy instance);
-    partial void DeleteGeoCitiy(GeoCitiy instance);
+    partial void InsertGeoCity(GeoCity instance);
+    partial void UpdateGeoCity(GeoCity instance);
+    partial void DeleteGeoCity(GeoCity instance);
     partial void InsertGeoRegion(GeoRegion instance);
     partial void UpdateGeoRegion(GeoRegion instance);
     partial void DeleteGeoRegion(GeoRegion instance);
@@ -74,31 +74,31 @@ namespace CarGo.Model
     partial void DeleteUser(User instance);
     #endregion
 		
-		public LessonProjectDbDataContext() : 
+		public CarGoDbDataContext() : 
 				base(global::CarGo.Model.Properties.Settings.Default.CarGoConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public LessonProjectDbDataContext(string connection) : 
+		public CarGoDbDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public LessonProjectDbDataContext(System.Data.IDbConnection connection) : 
+		public CarGoDbDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public LessonProjectDbDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public CarGoDbDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public LessonProjectDbDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public CarGoDbDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -160,11 +160,11 @@ namespace CarGo.Model
 			}
 		}
 		
-		public System.Data.Linq.Table<GeoCitiy> GeoCitiy
+		public System.Data.Linq.Table<GeoCity> GeoCity
 		{
 			get
 			{
-				return this.GetTable<GeoCitiy>();
+				return this.GetTable<GeoCity>();
 			}
 		}
 		
@@ -235,7 +235,7 @@ namespace CarGo.Model
 		
 		private EntitySet<Shiping> _Shiping;
 		
-		private EntityRef<GeoCitiy> _GeoCitiy;
+		private EntityRef<GeoCity> _GeoCitiy;
 		
 		private EntityRef<GeoStreet> _GeoStreet;
 		
@@ -257,7 +257,7 @@ namespace CarGo.Model
 		{
 			this._Shipings = new EntitySet<Shiping>(new Action<Shiping>(this.attach_Shipings), new Action<Shiping>(this.detach_Shipings));
 			this._Shiping = new EntitySet<Shiping>(new Action<Shiping>(this.attach_Shiping), new Action<Shiping>(this.detach_Shiping));
-			this._GeoCitiy = default(EntityRef<GeoCitiy>);
+			this._GeoCitiy = default(EntityRef<GeoCity>);
 			this._GeoStreet = default(EntityRef<GeoStreet>);
 			OnCreated();
 		}
@@ -350,7 +350,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adresses_Shipings", Storage="_Shipings", ThisKey="Id", OtherKey="LoadingAdressId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adress_Shiping", Storage="_Shipings", ThisKey="Id", OtherKey="LoadingAdressId")]
 		public EntitySet<Shiping> Shipings
 		{
 			get
@@ -363,7 +363,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adresses_Shipings1", Storage="_Shiping", ThisKey="Id", OtherKey="UnloadingAdressId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adress_Shiping1", Storage="_Shiping", ThisKey="Id", OtherKey="UnloadingAdressId")]
 		public EntitySet<Shiping> Shiping
 		{
 			get
@@ -376,8 +376,8 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoCities_Adresses", Storage="_GeoCitiy", ThisKey="CityId", OtherKey="Id", IsForeignKey=true)]
-		public GeoCitiy GeoCitiy
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoCitiy_Adress", Storage="_GeoCitiy", ThisKey="CityId", OtherKey="Id", IsForeignKey=true)]
+		public GeoCity GeoCity
 		{
 			get
 			{
@@ -385,7 +385,7 @@ namespace CarGo.Model
 			}
 			set
 			{
-				GeoCitiy previousValue = this._GeoCitiy.Entity;
+				GeoCity previousValue = this._GeoCitiy.Entity;
 				if (((previousValue != value) 
 							|| (this._GeoCitiy.HasLoadedOrAssignedValue == false)))
 				{
@@ -405,12 +405,12 @@ namespace CarGo.Model
 					{
 						this._CityId = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("GeoCitiy");
+					this.SendPropertyChanged("GeoCity");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoStreets_Adresses", Storage="_GeoStreet", ThisKey="StreetId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoStreet_Adress", Storage="_GeoStreet", ThisKey="StreetId", OtherKey="Id", IsForeignKey=true)]
 		public GeoStreet GeoStreet
 		{
 			get
@@ -560,7 +560,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrands_CarModels", Storage="_CarModel", ThisKey="Id", OtherKey="CarBrandId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrand_CarModel", Storage="_CarModel", ThisKey="Id", OtherKey="CarBrandId")]
 		public EntitySet<CarModel> CarModel
 		{
 			get
@@ -573,7 +573,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrands_Cars", Storage="_Car", ThisKey="Id", OtherKey="CarBrandId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrand_Car", Storage="_Car", ThisKey="Id", OtherKey="CarBrandId")]
 		public EntitySet<Car> Car
 		{
 			get
@@ -702,7 +702,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarLoadingTypes_Cars", Storage="_Car", ThisKey="Id", OtherKey="CarLoadingTypeId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarLoadingType_Car", Storage="_Car", ThisKey="Id", OtherKey="CarLoadingTypeId")]
 		public EntitySet<Car> Car
 		{
 			get
@@ -715,7 +715,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarLoadingTypes_Shipings", Storage="_Shiping", ThisKey="Id", OtherKey="CarLoadingTypeId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarLoadingType_Shiping", Storage="_Shiping", ThisKey="Id", OtherKey="CarLoadingTypeId")]
 		public EntitySet<Shiping> Shiping
 		{
 			get
@@ -872,7 +872,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarModels_Cars", Storage="_Car", ThisKey="Id", OtherKey="CarModelId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarModel_Car", Storage="_Car", ThisKey="Id", OtherKey="CarModelId")]
 		public EntitySet<Car> Car
 		{
 			get
@@ -885,7 +885,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrands_CarModels", Storage="_CarBrand", ThisKey="CarBrandId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrand_CarModel", Storage="_CarBrand", ThisKey="CarBrandId", OtherKey="Id", IsForeignKey=true)]
 		public CarBrand CarBrand
 		{
 			get
@@ -1196,7 +1196,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrands_Cars", Storage="_CarBrand", ThisKey="CarBrandId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarBrand_Car", Storage="_CarBrand", ThisKey="CarBrandId", OtherKey="Id", IsForeignKey=true)]
 		public CarBrand CarBrand
 		{
 			get
@@ -1230,7 +1230,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarLoadingTypes_Cars", Storage="_CarLoadingType", ThisKey="CarLoadingTypeId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarLoadingType_Car", Storage="_CarLoadingType", ThisKey="CarLoadingTypeId", OtherKey="Id", IsForeignKey=true)]
 		public CarLoadingType CarLoadingType
 		{
 			get
@@ -1264,7 +1264,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarModels_Cars", Storage="_CarModel", ThisKey="CarModelId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarModel_Car", Storage="_CarModel", ThisKey="CarModelId", OtherKey="Id", IsForeignKey=true)]
 		public CarModel CarModel
 		{
 			get
@@ -1298,7 +1298,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarTypes_Cars", Storage="_CarType", ThisKey="CarTypeId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarType_Car", Storage="_CarType", ThisKey="CarTypeId", OtherKey="Id", IsForeignKey=true)]
 		public CarType CarType
 		{
 			get
@@ -1332,7 +1332,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Cars", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Car", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -1458,7 +1458,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarTypes_Cars", Storage="_Car", ThisKey="Id", OtherKey="CarTypeId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarType_Car", Storage="_Car", ThisKey="Id", OtherKey="CarTypeId")]
 		public EntitySet<Car> Car
 		{
 			get
@@ -1471,7 +1471,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarTypes_Shipings", Storage="_Shiping", ThisKey="Id", OtherKey="CarTypeId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarType_Shiping", Storage="_Shiping", ThisKey="Id", OtherKey="CarTypeId")]
 		public EntitySet<Shiping> Shiping
 		{
 			get
@@ -1597,7 +1597,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FreightTypes_Shipings", Storage="_Shiping", ThisKey="Id", OtherKey="FreightTypeId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FreightType_Shiping", Storage="_Shiping", ThisKey="Id", OtherKey="FreightTypeId")]
 		public EntitySet<Shiping> Shiping
 		{
 			get
@@ -1644,7 +1644,7 @@ namespace CarGo.Model
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.GeoCities")]
-	public partial class GeoCitiy : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class GeoCity : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1677,7 +1677,7 @@ namespace CarGo.Model
     partial void OnCityTypeChanged();
     #endregion
 		
-		public GeoCitiy()
+		public GeoCity()
 		{
 			this._Adress = new EntitySet<Adress>(new Action<Adress>(this.attach_Adress), new Action<Adress>(this.detach_Adress));
 			this._GeoStreet = new EntitySet<GeoStreet>(new Action<GeoStreet>(this.attach_GeoStreet), new Action<GeoStreet>(this.detach_GeoStreet));
@@ -1769,7 +1769,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoCities_Adresses", Storage="_Adress", ThisKey="Id", OtherKey="CityId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoCitiy_Adress", Storage="_Adress", ThisKey="Id", OtherKey="CityId")]
 		public EntitySet<Adress> Adress
 		{
 			get
@@ -1782,7 +1782,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoCities_GeoStreets", Storage="_GeoStreet", ThisKey="Id", OtherKey="CityId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoCitiy_GeoStreet", Storage="_GeoStreet", ThisKey="Id", OtherKey="CityId")]
 		public EntitySet<GeoStreet> GeoStreet
 		{
 			get
@@ -1795,7 +1795,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoRegions_GeoCities", Storage="_GeoRegion", ThisKey="RegionId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoRegion_GeoCitiy", Storage="_GeoRegion", ThisKey="RegionId", OtherKey="Id", IsForeignKey=true)]
 		public GeoRegion GeoRegion
 		{
 			get
@@ -1812,12 +1812,12 @@ namespace CarGo.Model
 					if ((previousValue != null))
 					{
 						this._GeoRegion.Entity = null;
-						previousValue.GeoCitiy.Remove(this);
+						previousValue.GeoCity.Remove(this);
 					}
 					this._GeoRegion.Entity = value;
 					if ((value != null))
 					{
-						value.GeoCitiy.Add(this);
+						value.GeoCity.Add(this);
 						this._RegionId = value.Id;
 					}
 					else
@@ -1852,25 +1852,25 @@ namespace CarGo.Model
 		private void attach_Adress(Adress entity)
 		{
 			this.SendPropertyChanging();
-			entity.GeoCitiy = this;
+			entity.GeoCity = this;
 		}
 		
 		private void detach_Adress(Adress entity)
 		{
 			this.SendPropertyChanging();
-			entity.GeoCitiy = null;
+			entity.GeoCity = null;
 		}
 		
 		private void attach_GeoStreet(GeoStreet entity)
 		{
 			this.SendPropertyChanging();
-			entity.GeoCitiy = this;
+			entity.GeoCity = this;
 		}
 		
 		private void detach_GeoStreet(GeoStreet entity)
 		{
 			this.SendPropertyChanging();
-			entity.GeoCitiy = null;
+			entity.GeoCity = null;
 		}
 	}
 	
@@ -1884,7 +1884,7 @@ namespace CarGo.Model
 		
 		private string _Region;
 		
-		private EntitySet<GeoCitiy> _GeoCitiy;
+		private EntitySet<GeoCity> _GeoCitiy;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -1898,7 +1898,7 @@ namespace CarGo.Model
 		
 		public GeoRegion()
 		{
-			this._GeoCitiy = new EntitySet<GeoCitiy>(new Action<GeoCitiy>(this.attach_GeoCitiy), new Action<GeoCitiy>(this.detach_GeoCitiy));
+			this._GeoCitiy = new EntitySet<GeoCity>(new Action<GeoCity>(this.attach_GeoCitiy), new Action<GeoCity>(this.detach_GeoCitiy));
 			OnCreated();
 		}
 		
@@ -1942,8 +1942,8 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoRegions_GeoCities", Storage="_GeoCitiy", ThisKey="Id", OtherKey="RegionId")]
-		public EntitySet<GeoCitiy> GeoCitiy
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoRegion_GeoCitiy", Storage="_GeoCitiy", ThisKey="Id", OtherKey="RegionId")]
+		public EntitySet<GeoCity> GeoCity
 		{
 			get
 			{
@@ -1975,13 +1975,13 @@ namespace CarGo.Model
 			}
 		}
 		
-		private void attach_GeoCitiy(GeoCitiy entity)
+		private void attach_GeoCitiy(GeoCity entity)
 		{
 			this.SendPropertyChanging();
 			entity.GeoRegion = this;
 		}
 		
-		private void detach_GeoCitiy(GeoCitiy entity)
+		private void detach_GeoCitiy(GeoCity entity)
 		{
 			this.SendPropertyChanging();
 			entity.GeoRegion = null;
@@ -2006,7 +2006,7 @@ namespace CarGo.Model
 		
 		private EntitySet<Adress> _Adress;
 		
-		private EntityRef<GeoCitiy> _GeoCitiy;
+		private EntityRef<GeoCity> _GeoCitiy;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -2027,7 +2027,7 @@ namespace CarGo.Model
 		public GeoStreet()
 		{
 			this._Adress = new EntitySet<Adress>(new Action<Adress>(this.attach_Adress), new Action<Adress>(this.detach_Adress));
-			this._GeoCitiy = default(EntityRef<GeoCitiy>);
+			this._GeoCitiy = default(EntityRef<GeoCity>);
 			OnCreated();
 		}
 		
@@ -2135,7 +2135,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoStreets_Adresses", Storage="_Adress", ThisKey="Id", OtherKey="StreetId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoStreet_Adress", Storage="_Adress", ThisKey="Id", OtherKey="StreetId")]
 		public EntitySet<Adress> Adress
 		{
 			get
@@ -2148,8 +2148,8 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoCities_GeoStreets", Storage="_GeoCitiy", ThisKey="CityId", OtherKey="Id", IsForeignKey=true)]
-		public GeoCitiy GeoCitiy
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GeoCitiy_GeoStreet", Storage="_GeoCitiy", ThisKey="CityId", OtherKey="Id", IsForeignKey=true)]
+		public GeoCity GeoCity
 		{
 			get
 			{
@@ -2157,7 +2157,7 @@ namespace CarGo.Model
 			}
 			set
 			{
-				GeoCitiy previousValue = this._GeoCitiy.Entity;
+				GeoCity previousValue = this._GeoCitiy.Entity;
 				if (((previousValue != value) 
 							|| (this._GeoCitiy.HasLoadedOrAssignedValue == false)))
 				{
@@ -2177,7 +2177,7 @@ namespace CarGo.Model
 					{
 						this._CityId = default(int);
 					}
-					this.SendPropertyChanged("GeoCitiy");
+					this.SendPropertyChanged("GeoCity");
 				}
 			}
 		}
@@ -2307,7 +2307,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Roles_UserRoles", Storage="_UserRole", ThisKey="Id", OtherKey="RoleId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_UserRole", Storage="_UserRole", ThisKey="Id", OtherKey="RoleId")]
 		public EntitySet<UserRole> UserRole
 		{
 			get
@@ -2724,7 +2724,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarLoadingTypes_Shipings", Storage="_CarLoadingType", ThisKey="CarLoadingTypeId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarLoadingType_Shiping", Storage="_CarLoadingType", ThisKey="CarLoadingTypeId", OtherKey="Id", IsForeignKey=true)]
 		public CarLoadingType CarLoadingType
 		{
 			get
@@ -2758,7 +2758,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarTypes_Shipings", Storage="_CarType", ThisKey="CarTypeId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CarType_Shiping", Storage="_CarType", ThisKey="CarTypeId", OtherKey="Id", IsForeignKey=true)]
 		public CarType CarType
 		{
 			get
@@ -2792,7 +2792,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FreightTypes_Shipings", Storage="_FreightType", ThisKey="FreightTypeId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FreightType_Shiping", Storage="_FreightType", ThisKey="FreightTypeId", OtherKey="Id", IsForeignKey=true)]
 		public FreightType FreightType
 		{
 			get
@@ -2826,7 +2826,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adresses_Shipings", Storage="_Adresses", ThisKey="LoadingAdressId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adress_Shiping", Storage="_Adresses", ThisKey="LoadingAdressId", OtherKey="Id", IsForeignKey=true)]
 		public Adress Adresses
 		{
 			get
@@ -2860,7 +2860,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adresses_Shipings1", Storage="_Adress", ThisKey="UnloadingAdressId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Adress_Shiping1", Storage="_Adress", ThisKey="UnloadingAdressId", OtherKey="Id", IsForeignKey=true)]
 		public Adress Adress
 		{
 			get
@@ -2894,7 +2894,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Shipings", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Shiping", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -3052,7 +3052,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Roles_UserRoles", Storage="_Role", ThisKey="RoleId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_UserRole", Storage="_Role", ThisKey="RoleId", OtherKey="Id", IsForeignKey=true)]
 		public Role Role
 		{
 			get
@@ -3086,7 +3086,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_UserRoles", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserRole", Storage="_User", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -3431,7 +3431,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Cars", Storage="_Car", ThisKey="Id", OtherKey="UserId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Car", Storage="_Car", ThisKey="Id", OtherKey="UserId")]
 		public EntitySet<Car> Car
 		{
 			get
@@ -3444,7 +3444,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Shipings", Storage="_Shiping", ThisKey="Id", OtherKey="UserId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Shiping", Storage="_Shiping", ThisKey="Id", OtherKey="UserId")]
 		public EntitySet<Shiping> Shiping
 		{
 			get
@@ -3457,7 +3457,7 @@ namespace CarGo.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_UserRoles", Storage="_UserRole", ThisKey="Id", OtherKey="UserId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserRole", Storage="_UserRole", ThisKey="Id", OtherKey="UserId")]
 		public EntitySet<UserRole> UserRole
 		{
 			get

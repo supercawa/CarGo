@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\CommonDataHelper.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="CarGo.designer.cs">
       <AutoGen>True</AutoGen>
@@ -56,6 +57,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Proxy\GeoRegion.cs" />
     <Compile Include="Proxy\User.cs" />
     <Compile Include="SqlRepository.cs" />
     <Compile Include="SqlRepository\Role.cs" />

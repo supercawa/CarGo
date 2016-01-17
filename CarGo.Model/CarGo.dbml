@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CarGo" Class="LessonProjectDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CarGo" Class="CarGoDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=KUZNETSOV_HOME\MSSQLSERVER2012;Initial Catalog=CarGo;Integrated Security=True;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="CarGo.Model.Properties.Settings" SettingsPropertyName="CarGoConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Adresses" Member="Adress">
     <Type Name="Adress">
@@ -6,26 +6,26 @@
       <Column Name="CityId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="StreetId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Description" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Association Name="Adresses_Shipings" Member="Shipings" ThisKey="Id" OtherKey="LoadingAdressId" Type="Shiping" />
-      <Association Name="Adresses_Shipings1" Member="Shiping" ThisKey="Id" OtherKey="UnloadingAdressId" Type="Shiping" />
-      <Association Name="GeoCities_Adresses" Member="GeoCitiy" ThisKey="CityId" OtherKey="Id" Type="GeoCitiy" IsForeignKey="true" />
-      <Association Name="GeoStreets_Adresses" Member="GeoStreet" ThisKey="StreetId" OtherKey="Id" Type="GeoStreet" IsForeignKey="true" />
+      <Association Name="Adress_Shiping" Member="Shipings" ThisKey="Id" OtherKey="LoadingAdressId" Type="Shiping" />
+      <Association Name="Adress_Shiping1" Member="Shiping" ThisKey="Id" OtherKey="UnloadingAdressId" Type="Shiping" />
+      <Association Name="GeoCitiy_Adress" Member="GeoCity" Storage="_GeoCitiy" ThisKey="CityId" OtherKey="Id" Type="GeoCity" IsForeignKey="true" />
+      <Association Name="GeoStreet_Adress" Member="GeoStreet" ThisKey="StreetId" OtherKey="Id" Type="GeoStreet" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CarBrands" Member="CarBrand">
     <Type Name="CarBrand">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="CarBrands_CarModels" Member="CarModel" ThisKey="Id" OtherKey="CarBrandId" Type="CarModel" />
-      <Association Name="CarBrands_Cars" Member="Car" ThisKey="Id" OtherKey="CarBrandId" Type="Car" />
+      <Association Name="CarBrand_CarModel" Member="CarModel" ThisKey="Id" OtherKey="CarBrandId" Type="CarModel" />
+      <Association Name="CarBrand_Car" Member="Car" ThisKey="Id" OtherKey="CarBrandId" Type="Car" />
     </Type>
   </Table>
   <Table Name="dbo.CarLoadingTypes" Member="CarLoadingType">
     <Type Name="CarLoadingType">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="CarLoadingTypes_Cars" Member="Car" ThisKey="Id" OtherKey="CarLoadingTypeId" Type="Car" />
-      <Association Name="CarLoadingTypes_Shipings" Member="Shiping" ThisKey="Id" OtherKey="CarLoadingTypeId" Type="Shiping" />
+      <Association Name="CarLoadingType_Car" Member="Car" ThisKey="Id" OtherKey="CarLoadingTypeId" Type="Car" />
+      <Association Name="CarLoadingType_Shiping" Member="Shiping" ThisKey="Id" OtherKey="CarLoadingTypeId" Type="Shiping" />
     </Type>
   </Table>
   <Table Name="dbo.CarModels" Member="CarModel">
@@ -33,8 +33,8 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CarBrandId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="CarModels_Cars" Member="Car" ThisKey="Id" OtherKey="CarModelId" Type="Car" />
-      <Association Name="CarBrands_CarModels" Member="CarBrand" ThisKey="CarBrandId" OtherKey="Id" Type="CarBrand" IsForeignKey="true" />
+      <Association Name="CarModel_Car" Member="Car" ThisKey="Id" OtherKey="CarModelId" Type="Car" />
+      <Association Name="CarBrand_CarModel" Member="CarBrand" ThisKey="CarBrandId" OtherKey="Id" Type="CarBrand" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Cars" Member="Car">
@@ -47,44 +47,44 @@
       <Column Name="Tonnage" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Capacity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="CarBrands_Cars" Member="CarBrand" ThisKey="CarBrandId" OtherKey="Id" Type="CarBrand" IsForeignKey="true" />
-      <Association Name="CarLoadingTypes_Cars" Member="CarLoadingType" ThisKey="CarLoadingTypeId" OtherKey="Id" Type="CarLoadingType" IsForeignKey="true" />
-      <Association Name="CarModels_Cars" Member="CarModel" ThisKey="CarModelId" OtherKey="Id" Type="CarModel" IsForeignKey="true" />
-      <Association Name="CarTypes_Cars" Member="CarType" ThisKey="CarTypeId" OtherKey="Id" Type="CarType" IsForeignKey="true" />
-      <Association Name="Users_Cars" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Association Name="CarBrand_Car" Member="CarBrand" ThisKey="CarBrandId" OtherKey="Id" Type="CarBrand" IsForeignKey="true" />
+      <Association Name="CarLoadingType_Car" Member="CarLoadingType" ThisKey="CarLoadingTypeId" OtherKey="Id" Type="CarLoadingType" IsForeignKey="true" />
+      <Association Name="CarModel_Car" Member="CarModel" ThisKey="CarModelId" OtherKey="Id" Type="CarModel" IsForeignKey="true" />
+      <Association Name="CarType_Car" Member="CarType" ThisKey="CarTypeId" OtherKey="Id" Type="CarType" IsForeignKey="true" />
+      <Association Name="User_Car" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CarTypes" Member="CarType">
     <Type Name="CarType">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="CarTypes_Cars" Member="Car" ThisKey="Id" OtherKey="CarTypeId" Type="Car" />
-      <Association Name="CarTypes_Shipings" Member="Shiping" ThisKey="Id" OtherKey="CarTypeId" Type="Shiping" />
+      <Association Name="CarType_Car" Member="Car" ThisKey="Id" OtherKey="CarTypeId" Type="Car" />
+      <Association Name="CarType_Shiping" Member="Shiping" ThisKey="Id" OtherKey="CarTypeId" Type="Shiping" />
     </Type>
   </Table>
   <Table Name="dbo.FreightTypes" Member="FreightType">
     <Type Name="FreightType">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="FreightTypes_Shipings" Member="Shiping" ThisKey="Id" OtherKey="FreightTypeId" Type="Shiping" />
+      <Association Name="FreightType_Shiping" Member="Shiping" ThisKey="Id" OtherKey="FreightTypeId" Type="Shiping" />
     </Type>
   </Table>
-  <Table Name="dbo.GeoCities" Member="GeoCitiy">
-    <Type Name="GeoCitiy">
+  <Table Name="dbo.GeoCities" Member="GeoCity">
+    <Type Name="GeoCity">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="RegionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="City" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="CityType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="GeoCities_Adresses" Member="Adress" ThisKey="Id" OtherKey="CityId" Type="Adress" />
-      <Association Name="GeoCities_GeoStreets" Member="GeoStreet" ThisKey="Id" OtherKey="CityId" Type="GeoStreet" />
-      <Association Name="GeoRegions_GeoCities" Member="GeoRegion" ThisKey="RegionId" OtherKey="Id" Type="GeoRegion" IsForeignKey="true" />
+      <Association Name="GeoCitiy_Adress" Member="Adress" ThisKey="Id" OtherKey="CityId" Type="Adress" />
+      <Association Name="GeoCitiy_GeoStreet" Member="GeoStreet" ThisKey="Id" OtherKey="CityId" Type="GeoStreet" />
+      <Association Name="GeoRegion_GeoCitiy" Member="GeoRegion" ThisKey="RegionId" OtherKey="Id" Type="GeoRegion" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.GeoRegions" Member="GeoRegion">
     <Type Name="GeoRegion">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Region" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Association Name="GeoRegions_GeoCities" Member="GeoCitiy" ThisKey="Id" OtherKey="RegionId" Type="GeoCitiy" />
+      <Association Name="GeoRegion_GeoCitiy" Member="GeoCity" Storage="_GeoCitiy" ThisKey="Id" OtherKey="RegionId" Type="GeoCity" />
     </Type>
   </Table>
   <Table Name="dbo.GeoStreets" Member="GeoStreet">
@@ -94,8 +94,8 @@
       <Column Name="Street" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="StreetType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="PostIndex" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="GeoStreets_Adresses" Member="Adress" ThisKey="Id" OtherKey="StreetId" Type="Adress" />
-      <Association Name="GeoCities_GeoStreets" Member="GeoCitiy" ThisKey="CityId" OtherKey="Id" Type="GeoCitiy" IsForeignKey="true" />
+      <Association Name="GeoStreet_Adress" Member="Adress" ThisKey="Id" OtherKey="StreetId" Type="Adress" />
+      <Association Name="GeoCitiy_GeoStreet" Member="GeoCity" Storage="_GeoCitiy" ThisKey="CityId" OtherKey="Id" Type="GeoCity" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Roles" Member="Role">
@@ -103,7 +103,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Code" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Roles_UserRoles" Member="UserRole" ThisKey="Id" OtherKey="RoleId" Type="UserRole" />
+      <Association Name="Role_UserRole" Member="UserRole" ThisKey="Id" OtherKey="RoleId" Type="UserRole" />
     </Type>
   </Table>
   <Table Name="dbo.Shipings" Member="Shiping">
@@ -121,12 +121,12 @@
       <Column Name="NeedLoaders" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="CarLoadingTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CarTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="CarLoadingTypes_Shipings" Member="CarLoadingType" ThisKey="CarLoadingTypeId" OtherKey="Id" Type="CarLoadingType" IsForeignKey="true" />
-      <Association Name="CarTypes_Shipings" Member="CarType" ThisKey="CarTypeId" OtherKey="Id" Type="CarType" IsForeignKey="true" />
-      <Association Name="FreightTypes_Shipings" Member="FreightType" ThisKey="FreightTypeId" OtherKey="Id" Type="FreightType" IsForeignKey="true" />
-      <Association Name="Adresses_Shipings" Member="Adresses" ThisKey="LoadingAdressId" OtherKey="Id" Type="Adress" IsForeignKey="true" />
-      <Association Name="Adresses_Shipings1" Member="Adress" ThisKey="UnloadingAdressId" OtherKey="Id" Type="Adress" IsForeignKey="true" />
-      <Association Name="Users_Shipings" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Association Name="CarLoadingType_Shiping" Member="CarLoadingType" ThisKey="CarLoadingTypeId" OtherKey="Id" Type="CarLoadingType" IsForeignKey="true" />
+      <Association Name="CarType_Shiping" Member="CarType" ThisKey="CarTypeId" OtherKey="Id" Type="CarType" IsForeignKey="true" />
+      <Association Name="FreightType_Shiping" Member="FreightType" ThisKey="FreightTypeId" OtherKey="Id" Type="FreightType" IsForeignKey="true" />
+      <Association Name="Adress_Shiping" Member="Adresses" ThisKey="LoadingAdressId" OtherKey="Id" Type="Adress" IsForeignKey="true" />
+      <Association Name="Adress_Shiping1" Member="Adress" ThisKey="UnloadingAdressId" OtherKey="Id" Type="Adress" IsForeignKey="true" />
+      <Association Name="User_Shiping" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.UserRoles" Member="UserRole">
@@ -134,8 +134,8 @@
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Roles_UserRoles" Member="Role" ThisKey="RoleId" OtherKey="Id" Type="Role" IsForeignKey="true" />
-      <Association Name="Users_UserRoles" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Association Name="Role_UserRole" Member="Role" ThisKey="RoleId" OtherKey="Id" Type="Role" IsForeignKey="true" />
+      <Association Name="User_UserRole" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Users" Member="User">
@@ -151,9 +151,9 @@
       <Column Name="ActivateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="LastVisitDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ActivateLink" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Users_Cars" Member="Car" ThisKey="Id" OtherKey="UserId" Type="Car" />
-      <Association Name="Users_Shipings" Member="Shiping" ThisKey="Id" OtherKey="UserId" Type="Shiping" />
-      <Association Name="Users_UserRoles" Member="UserRole" ThisKey="Id" OtherKey="UserId" Type="UserRole" />
+      <Association Name="User_Car" Member="Car" ThisKey="Id" OtherKey="UserId" Type="Car" />
+      <Association Name="User_Shiping" Member="Shiping" ThisKey="Id" OtherKey="UserId" Type="Shiping" />
+      <Association Name="User_UserRole" Member="UserRole" ThisKey="Id" OtherKey="UserId" Type="UserRole" />
     </Type>
   </Table>
 </Database>

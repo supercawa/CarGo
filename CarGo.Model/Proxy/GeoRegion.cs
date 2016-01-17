@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ninject;
 
 namespace CarGo.Model
 {
-    public partial class SqlRepository : IRepository
+    public partial class GeoRegion
     {
-        [Inject]
-        public CarGoDbDataContext Db { get; set; }
-
-       
+        public string OriginalRegion { get; set; }
     }
 }
